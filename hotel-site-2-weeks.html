@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From idea to live hotel site in 2 weeks — Abdul-Rashid Bushran</title>
+  <meta name="description" content="How I scoped, designed, and shipped a full hotel booking website solo, on a deadline.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .post-page { min-height: 100vh; padding: calc(var(--nav-h) + 60px) var(--pad) 100px; }
+    .post-container { max-width: 720px; margin: 0 auto; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--f-mono); font-size: 11px; color: var(--text-muted);
+      text-decoration: none; margin-bottom: 40px; transition: color .2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .post-tag {
+      display: inline-block; font-family: var(--f-mono); font-size: 10px;
+      letter-spacing: .1em; padding: 4px 12px; border-radius: 99px;
+      background: var(--accent-glow); color: var(--accent);
+      border: 1px solid rgba(212,168,83,.2); margin-bottom: 20px;
+    }
+    .post-title {
+      font-family: var(--f-display); font-size: clamp(32px,5.5vw,56px);
+      font-weight: 800; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 20px;
+    }
+    .post-meta {
+      display: flex; align-items: center; gap: 16px;
+      font-family: var(--f-mono); font-size: 11px; color: var(--text-dim);
+      margin-bottom: 48px; padding-bottom: 32px;
+      border-bottom: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .post-meta-author { color: var(--accent); }
+    .post-body { font-size: 16px; line-height: 1.8; color: var(--text); }
+    .post-body h2 { font-family: var(--f-display); font-size: clamp(22px,3vw,28px); font-weight: 700; letter-spacing: -.025em; margin: 48px 0 16px; }
+    .post-body h3 { font-family: var(--f-display); font-size: 18px; font-weight: 600; margin: 32px 0 12px; }
+    .post-body p { margin-bottom: 20px; }
+    .post-body strong { color: var(--text); font-weight: 600; }
+    .post-body em { font-style: italic; }
+    .post-body ul, .post-body ol { margin: 0 0 20px 24px; }
+    .post-body li { margin-bottom: 8px; }
+    .post-body code {
+      font-family: var(--f-mono); font-size: 13.5px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 5px; padding: 2px 7px; color: var(--accent);
+    }
+    .post-callout {
+      background: var(--accent-glow); border: 1px solid rgba(212,168,83,.2);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-sm);
+      padding: 18px 22px; margin: 28px 0; font-size: 14.5px;
+    }
+    .timeline-block {
+      display: grid; gap: 0;
+      margin: 32px 0;
+    }
+    .tl-week {
+      display: grid; grid-template-columns: 100px 1fr;
+      gap: 16px; padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-week:last-child { border-bottom: none; }
+    .tl-week-label {
+      font-family: var(--f-mono); font-size: 11px; color: var(--accent);
+      letter-spacing: .08em; padding-top: 2px;
+    }
+    .tl-week-content h3 { font-family: var(--f-display); font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .tl-week-content p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+    .post-footer {
+      margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .post-footer-nav a {
+      font-family: var(--f-mono); font-size: 11.5px; color: var(--text-muted);
+      text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s;
+    }
+    .post-footer-nav a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="Abdul-Rashid Bushran — home">
+        ARB<span class="nav-logo-dot">.</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Work</a></li>
+        <li><a href="../index.html#resume">Resume</a></li>
+        <li><a href="index.html" class="active">Blog</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="post-page">
+    <div class="post-container">
+      <a href="index.html" class="back-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All posts
+      </a>
+
+      <span class="post-tag">Case Study</span>
+      <h1 class="post-title">From idea to live hotel site in 2 weeks</h1>
+      <div class="post-meta">
+        <span class="post-meta-author">Abdul-Rashid Bushran</span>
+        <span>·</span>
+        <span>MarshalTech Hub</span>
+        <span>·</span>
+        <span>7 min read</span>
+      </div>
+
+      <div class="post-body">
+        <p>
+          When the client for Nab Hotel &amp; Events called me, the brief was straightforward: <em>"We need a website. We have an event in two weeks and we want to be able to send people to it."</em> No mockups, no existing brand guidelines, no content. Just a deadline.
+        </p>
+        <p>
+          This is how that project went — what I did, what went well, and what I'd change.
+        </p>
+
+        <h2>Week one: scope, structure, content</h2>
+
+        <div class="timeline-block">
+          <div class="tl-week">
+            <span class="tl-week-label">Day 1–2</span>
+            <div class="tl-week-content">
+              <h3>Discovery and scope lock</h3>
+              <p>One 90-minute call to understand the business. What rooms do they have? What events do they host? What do they want people to do on the site? I walked away with a clear list: Home, Rooms, Dining, Events, Gallery, Special Offers, Contact. That became the nav, and I didn't deviate from it.</p>
+            </div>
+          </div>
+          <div class="tl-week">
+            <span class="tl-week-label">Day 3</span>
+            <div class="tl-week-content">
+              <h3>Content collection</h3>
+              <p>I gave the client a simple WhatsApp checklist: logo file, room photos (at least 3 per room type), a short description for each room, and their contact details. No content, no site — I made this clear upfront. They delivered by end of day.</p>
+            </div>
+          </div>
+          <div class="tl-week">
+            <span class="tl-week-label">Day 4–5</span>
+            <div class="tl-week-content">
+              <h3>HTML structure and base styles</h3>
+              <p>I built the skeleton first — all pages, navigation, basic layout grid — before touching any visual design. This let me move content around easily and see what was missing.</p>
+            </div>
+          </div>
+          <div class="tl-week">
+            <span class="tl-week-label">Day 6–7</span>
+            <div class="tl-week-content">
+              <h3>Design system and hero sections</h3>
+              <p>Established the colour palette (deep green and gold — the hotel's existing colours), typography, and component patterns. Then built all hero sections while the system was fresh.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>Week two: build, review, ship</h2>
+
+        <div class="timeline-block">
+          <div class="tl-week">
+            <span class="tl-week-label">Day 8–10</span>
+            <div class="tl-week-content">
+              <h3>Interior pages and gallery</h3>
+              <p>Rooms, dining, events pages. The gallery was the most time-consuming — I built a lightbox from scratch rather than using a library, which I'd reconsider next time.</p>
+            </div>
+          </div>
+          <div class="tl-week">
+            <span class="tl-week-label">Day 11</span>
+            <div class="tl-week-content">
+              <h3>Booking and contact forms</h3>
+              <p>Simple form-to-email setup using Formspree. The client wasn't ready for a full booking system, so I built an enquiry form that routes to their email and WhatsApp.</p>
+            </div>
+          </div>
+          <div class="tl-week">
+            <span class="tl-week-label">Day 12–13</span>
+            <div class="tl-week-content">
+              <h3>Client review and revisions</h3>
+              <p>Shared a preview link. Two rounds of revisions — mostly copy changes and one colour tweak. No structural changes. The upfront scope lock paid off here.</p>
+            </div>
+          </div>
+          <div class="tl-week">
+            <span class="tl-week-label">Day 14</span>
+            <div class="tl-week-content">
+              <h3>Domain, hosting, launch</h3>
+              <p>Connected the domain, pushed to production, ran final checks on mobile. Live by 6pm.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>What went well</h2>
+        <ul>
+          <li><strong>Locking scope on day one.</strong> Because we agreed exactly what pages existed before I wrote a line of code, there was no "can we add a blog?" on day 12.</li>
+          <li><strong>Content-first approach.</strong> Waiting for real photos before building the gallery meant I built the layout around actual assets, not placeholders that never matched.</li>
+          <li><strong>Building the design system before the pages.</strong> Having consistent spacing, colours, and components defined meant every page felt cohesive without me having to think about it.</li>
+        </ul>
+
+        <h2>What I'd do differently</h2>
+        <ul>
+          <li><strong>Build the gallery with a library.</strong> I spent 4 hours on a lightbox that a well-maintained library would have given me in 20 minutes. Solo projects don't need custom everything.</li>
+          <li><strong>Get the hosting decision on day one.</strong> The domain transfer took longer than expected and nearly pushed launch. Have the hosting conversation in the first call.</li>
+          <li><strong>More mobile testing earlier.</strong> I caught a Safari layout issue on day 13. If I'd been testing on device from day 4, I'd have fixed it before it was urgent.</li>
+        </ul>
+
+        <div class="post-callout">
+          <strong>The real lesson:</strong> Two weeks is enough for a complete, professional website — if you spend the first 20% of that time making decisions rather than writing code. Scope clarity and content collection are not "admin tasks." They're the project.
+        </div>
+
+        <h2>The result</h2>
+        <p>
+          The site launched in time for the event. The client could share the URL with guests, and the contact form started receiving enquiries within the first week. Not a complex platform — but exactly what the business needed, delivered when they needed it.
+        </p>
+        <p>
+          That's the standard I hold myself to: not the most technically impressive solution, but the right solution, on time.
+        </p>
+      </div>
+
+      <div class="post-footer">
+        <div class="post-footer-nav">
+          <a href="apple-first-design.html">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Previous post
+          </a>
+        </div>
+        <div class="post-footer-nav">
+          <a href="../index.html#contact">
+            Work with me
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-copy">© <span id="yr"></span> Abdul-Rashid Bushran</span>
+      <span class="footer-line">Built in Ghana, shipped worldwide.</span>
+      <a href="../index.html#contact" class="back-top">Hire me</a>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(t) { html.setAttribute('data-theme', t); localStorage.setItem('arb-theme', t); }
+    (function(){ const s = localStorage.getItem('arb-theme'), p = window.matchMedia('(prefers-color-scheme: dark)').matches; applyTheme(s||(p?'dark':'light')); })();
+    themeToggle.addEventListener('click', () => applyTheme(html.dataset.theme === 'dark' ? 'light' : 'dark'));
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

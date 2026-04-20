@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Abdul-Rashid Bushran</title>
+  <meta name="description" content="Writing about full-stack development, MoMo payments, Apple-first design, and building for Ghanaian businesses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .blog-page { min-height: 100vh; padding: calc(var(--nav-h) + 60px) var(--pad) 100px; }
+    .blog-page .container { max-width: var(--max-w); margin: 0 auto; }
+    .blog-page-header { margin-bottom: 56px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--f-mono); font-size: 11px; color: var(--text-muted);
+      text-decoration: none; margin-bottom: 32px; transition: color .2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .blog-page-title {
+      font-family: var(--f-display); font-size: clamp(36px,6vw,72px);
+      font-weight: 800; letter-spacing: -.04em; margin-bottom: 12px;
+    }
+    .blog-page-sub { color: var(--text-muted); font-size: 14px; font-family: var(--f-mono); }
+    .blog-list { display: flex; flex-direction: column; gap: 2px; }
+    .bl-card {
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: start; gap: 24px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: clamp(24px,4vw,40px);
+      text-decoration: none; transition: border-color .25s, background .25s;
+    }
+    .bl-card:hover { border-color: var(--accent); background: var(--surface-2); }
+    .bl-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .bl-card-tag {
+      font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em;
+      padding: 3px 10px; border-radius: 99px;
+      background: var(--accent-glow); color: var(--accent);
+      border: 1px solid rgba(212,168,83,.2);
+    }
+    .bl-card-date { font-family: var(--f-mono); font-size: 10.5px; color: var(--text-dim); }
+    .bl-card-title {
+      font-family: var(--f-display); font-size: clamp(18px,2.5vw,24px);
+      font-weight: 700; letter-spacing: -.02em; color: var(--text);
+      margin-bottom: 10px; line-height: 1.25;
+    }
+    .bl-card-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.65; max-width: 640px; }
+    .bl-arrow {
+      color: var(--text-dim); flex-shrink: 0;
+      transition: color .2s, transform .2s;
+      margin-top: 4px;
+    }
+    .bl-card:hover .bl-arrow { color: var(--accent); transform: translate(4px,-4px); }
+    @media (max-width: 560px) { .bl-card { grid-template-columns: 1fr; } .bl-arrow { display: none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="Abdul-Rashid Bushran — home">
+        ARB<span class="nav-logo-dot">.</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Work</a></li>
+        <li><a href="../index.html#resume">Resume</a></li>
+        <li><a href="../blog/index.html" class="active">Blog</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="blog-page">
+    <div class="container">
+      <div class="blog-page-header">
+        <a href="../index.html" class="back-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to portfolio
+        </a>
+        <span class="section-label">Blog</span>
+        <h1 class="blog-page-title reveal">Writing</h1>
+        <p class="blog-page-sub">Thoughts on development, design, and building for Ghana.</p>
+      </div>
+
+      <div class="blog-list">
+
+        <a href="momo-checkout.html" class="bl-card reveal">
+          <div>
+            <div class="bl-card-meta">
+              <span class="bl-card-tag">Payments</span>
+              <span class="bl-card-date">2026</span>
+            </div>
+            <h2 class="bl-card-title">Building MoMo-ready checkouts in Ghana</h2>
+            <p class="bl-card-excerpt">A practical guide to integrating MTN Mobile Money and Vodafone Cash into your e-commerce platform — with real code and lessons learned.</p>
+          </div>
+          <svg class="bl-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+
+        <a href="apple-first-design.html" class="bl-card reveal">
+          <div>
+            <div class="bl-card-meta">
+              <span class="bl-card-tag">Design</span>
+              <span class="bl-card-date">2026</span>
+            </div>
+            <h2 class="bl-card-title">Why Apple-first design matters for SMBs</h2>
+            <p class="bl-card-excerpt">Most Ghanaian SMB owners use iPhones. Here's why designing for Safari and iOS first changes the game — and how I do it at MarshalTech Hub.</p>
+          </div>
+          <svg class="bl-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+
+        <a href="hotel-site-2-weeks.html" class="bl-card reveal">
+          <div>
+            <div class="bl-card-meta">
+              <span class="bl-card-tag">Case Study</span>
+              <span class="bl-card-date">2026</span>
+            </div>
+            <h2 class="bl-card-title">From idea to live hotel site in 2 weeks</h2>
+            <p class="bl-card-excerpt">How I scoped, designed, and shipped a full hotel booking website solo, on a deadline — and what I'd do differently next time.</p>
+          </div>
+          <svg class="bl-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-copy">© <span id="yr"></span> Abdul-Rashid Bushran</span>
+      <span class="footer-line">Built in Ghana, shipped worldwide.</span>
+      <a href="../index.html#hero" class="back-top">
+        Back to top
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(t) { html.setAttribute('data-theme', t); localStorage.setItem('arb-theme', t); }
+    (function(){ const s = localStorage.getItem('arb-theme'), p = window.matchMedia('(prefers-color-scheme: dark)').matches; applyTheme(s||(p?'dark':'light')); })();
+    themeToggle.addEventListener('click', () => applyTheme(html.dataset.theme === 'dark' ? 'light' : 'dark'));
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } }); }, {threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Apple-first design matters for SMBs — Abdul-Rashid Bushran</title>
+  <meta name="description" content="Most Ghanaian SMB owners use iPhones. Here's why designing for Safari and iOS first changes the game.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .post-page { min-height: 100vh; padding: calc(var(--nav-h) + 60px) var(--pad) 100px; }
+    .post-container { max-width: 720px; margin: 0 auto; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--f-mono); font-size: 11px; color: var(--text-muted);
+      text-decoration: none; margin-bottom: 40px; transition: color .2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .post-tag {
+      display: inline-block; font-family: var(--f-mono); font-size: 10px;
+      letter-spacing: .1em; padding: 4px 12px; border-radius: 99px;
+      background: var(--accent-glow); color: var(--accent);
+      border: 1px solid rgba(212,168,83,.2); margin-bottom: 20px;
+    }
+    .post-title {
+      font-family: var(--f-display); font-size: clamp(32px,5.5vw,56px);
+      font-weight: 800; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 20px;
+    }
+    .post-meta {
+      display: flex; align-items: center; gap: 16px;
+      font-family: var(--f-mono); font-size: 11px; color: var(--text-dim);
+      margin-bottom: 48px; padding-bottom: 32px;
+      border-bottom: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .post-meta-author { color: var(--accent); }
+    .post-body { font-size: 16px; line-height: 1.8; color: var(--text); }
+    .post-body h2 { font-family: var(--f-display); font-size: clamp(22px,3vw,28px); font-weight: 700; letter-spacing: -.025em; margin: 48px 0 16px; }
+    .post-body h3 { font-family: var(--f-display); font-size: 18px; font-weight: 600; margin: 32px 0 12px; }
+    .post-body p { margin-bottom: 20px; }
+    .post-body strong { color: var(--text); font-weight: 600; }
+    .post-body ul, .post-body ol { margin: 0 0 20px 24px; }
+    .post-body li { margin-bottom: 8px; }
+    .post-body code {
+      font-family: var(--f-mono); font-size: 13.5px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 5px; padding: 2px 7px; color: var(--accent);
+    }
+    .post-callout {
+      background: var(--accent-glow); border: 1px solid rgba(212,168,83,.2);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-sm);
+      padding: 18px 22px; margin: 28px 0; font-size: 14.5px;
+    }
+    .post-footer {
+      margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .post-footer-nav a {
+      font-family: var(--f-mono); font-size: 11.5px; color: var(--text-muted);
+      text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s;
+    }
+    .post-footer-nav a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="Abdul-Rashid Bushran — home">
+        ARB<span class="nav-logo-dot">.</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Work</a></li>
+        <li><a href="../index.html#resume">Resume</a></li>
+        <li><a href="index.html" class="active">Blog</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="post-page">
+    <div class="post-container">
+      <a href="index.html" class="back-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All posts
+      </a>
+
+      <span class="post-tag">Design</span>
+      <h1 class="post-title">Why Apple-first design matters for SMBs</h1>
+      <div class="post-meta">
+        <span class="post-meta-author">Abdul-Rashid Bushran</span>
+        <span>·</span>
+        <span>MarshalTech Hub</span>
+        <span>·</span>
+        <span>5 min read</span>
+      </div>
+
+      <div class="post-body">
+        <p>
+          Running MarshalTech Hub — where I sell iPhones and MacBooks alongside building software — puts me in an unusual position. I see firsthand what devices my clients and their customers actually use. And the picture is consistent: <strong>iPhone is dominant among Ghanaian business owners and their upper-market customers.</strong>
+        </p>
+        <p>
+          This changes how I approach web design. Not "mobile-first" in the generic sense, but specifically <em>Safari on iOS first</em>. Here's what that means in practice.
+        </p>
+
+        <h2>Who your users actually are</h2>
+        <p>
+          Look at the analytics for any Ghanaian SMB website and you'll see the same story: 70–85% mobile traffic, with a significant portion from Safari. The business owner checking their own site is almost certainly on an iPhone. Their suppliers are on iPhones. Their upper-middle-class customers are on iPhones.
+        </p>
+        <p>
+          Android dominates volume in Ghana, especially on lower-cost devices. But for businesses targeting professionals, traders, and entrepreneurs — the people with purchasing power — Apple is the primary device.
+        </p>
+
+        <div class="post-callout">
+          <strong>What this means:</strong> If your site looks or works poorly on Safari iOS, you're failing your most important users. Chrome DevTools mobile emulation won't catch Safari-specific bugs. You need to test on a real iPhone.
+        </div>
+
+        <h2>Safari differences that actually bite you</h2>
+        <p>
+          Safari on iOS has quirks that Chrome-first developers get burned by:
+        </p>
+        <ul>
+          <li><strong>100vh includes the address bar.</strong> Use <code>100svh</code> (small viewport height) instead to avoid content being hidden behind the browser UI.</li>
+          <li><strong>Position: fixed behaves differently</strong> inside scroll containers. Test any sticky headers, modals, or bottom bars on a real device.</li>
+          <li><strong>Input zoom.</strong> Safari zooms in when a text input has font-size below 16px. Set inputs to at least <code>font-size: 16px</code> to prevent this.</li>
+          <li><strong>Backdrop-filter support</strong> requires the <code>-webkit-</code> prefix on older iOS versions.</li>
+          <li><strong>Overscroll bounce.</strong> iOS has elastic scroll on body. If your app has a fixed layout, this can make it look broken. Use <code>overscroll-behavior: none</code> where needed.</li>
+        </ul>
+
+        <h2>The premium feel principle</h2>
+        <p>
+          There's a reason iPhone users pay a premium for their device — they care about quality and attention to detail. That same expectation carries over to the software they use. A site that looks beautiful and feels smooth on iOS signals quality. A site that has janky animations, misaligned text, or layout breaks on mobile signals the opposite — no matter how good the product or service is.
+        </p>
+        <p>
+          This is the Apple design principle applied to web: <strong>every interaction should feel intentional.</strong> Tap targets should be large enough. Transitions should be smooth. Text should be readable without zooming. Loading should be fast even on a cellular connection.
+        </p>
+
+        <h2>Practical checklist for iOS-first web</h2>
+        <ul>
+          <li>Use <code>100svh</code> not <code>100vh</code> for full-height sections</li>
+          <li>All form inputs: <code>font-size: 16px</code> minimum</li>
+          <li>Tap targets: 44×44px minimum (Apple's own HIG standard)</li>
+          <li>Test scroll performance — no jank on iPhone 11 or below</li>
+          <li>Add <code>-webkit-</code> prefixes for backdrop-filter, text-stroke</li>
+          <li>Check modals and overlays on real device for keyboard behaviour</li>
+          <li>Test with Safari's Responsive Design Mode and a real device</li>
+        </ul>
+
+        <h2>Connecting this to MarshalTech Hub</h2>
+        <p>
+          Every website I build through MarshalTech Hub is QA'd on an iPhone before it ships. Not because I want to be difficult — because that's the standard the client's customers expect. If a business owner is going to refer their site to a supplier who's checking it on an iPhone 14, it needs to be perfect on that device.
+        </p>
+        <p>
+          The businesses I build for are investing in their digital presence. They deserve software that matches the quality of the devices they use.
+        </p>
+      </div>
+
+      <div class="post-footer">
+        <div class="post-footer-nav">
+          <a href="momo-checkout.html">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Previous post
+          </a>
+        </div>
+        <div class="post-footer-nav">
+          <a href="hotel-site-2-weeks.html">
+            Next post
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-copy">© <span id="yr"></span> Abdul-Rashid Bushran</span>
+      <span class="footer-line">Built in Ghana, shipped worldwide.</span>
+      <a href="../index.html#contact" class="back-top">Hire me</a>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(t) { html.setAttribute('data-theme', t); localStorage.setItem('arb-theme', t); }
+    (function(){ const s = localStorage.getItem('arb-theme'), p = window.matchMedia('(prefers-color-scheme: dark)').matches; applyTheme(s||(p?'dark':'light')); })();
+    themeToggle.addEventListener('click', () => applyTheme(html.dataset.theme === 'dark' ? 'light' : 'dark'));
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
